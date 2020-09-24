@@ -1,12 +1,12 @@
-import { Button, TextField } from '@material-ui/core';
-import React, {useState, useContext} from 'react'
-import ValidacoesDeCadastro from '../../context/ValidacoesDeCadastro';
-import useErros from '../../hooks/useErros';
+import { Button, TextField } from '@material-ui/core'
+import React, { useContext, useState } from 'react'
+import ValidacoesDeCadastro from '../../../context/ValidacoesDeCadastro';
+import useErros from '../../../hooks/useErros';
 
-function DadosUsuario({aoEnviar}) {
-    
-    const [senha, setSenha] = useState("");
+const LoginForm = ({enviarLogin}) => {
+
     const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
     const validacoes = useContext(ValidacoesDeCadastro);
 
     const [erros, validarCampos, possoEnviar] = useErros(validacoes);
@@ -15,10 +15,9 @@ function DadosUsuario({aoEnviar}) {
         <form onSubmit={(event) => {
             event.preventDefault(); 
             if(possoEnviar()) {
-                aoEnviar({email, senha});
+                enviarLogin({email, senha});
             }
         }}>
-
             <TextField
                 id="email"
                 value={email}
@@ -45,16 +44,17 @@ function DadosUsuario({aoEnviar}) {
                 helperText={erros.senha.texto}
                 required
                 fullWidth
-            />  
-            
+            />
+
             <Button
                 type="submit"
-                variant="contained" 
+                variant="contained"
                 color="primary"
-                > Próximo
+                fullWidth
+                >Logar
             </Button>
         </form>
     );
 }
 
-export default DadosUsuario;
+export default LoginForm;

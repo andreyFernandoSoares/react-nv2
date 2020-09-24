@@ -1,9 +1,9 @@
 import React, {useState, useContext} from 'react';
 import {TextField, Button, Switch, FormControlLabel} from '@material-ui/core';
-import ValidacoesDeCadastro from '../../context/ValidacoesDeCadastro';
-import useErros from '../../hooks/useErros';
+import useErros from '../../../hooks/useErros';
+import ValidacoesDeCadastro from '../../../context/ValidacoesDeCadastro';
 
-function DadosPessoais({aoEnviar}) {
+const DadosPessoais = ({aoEnviar}) => {
 
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");

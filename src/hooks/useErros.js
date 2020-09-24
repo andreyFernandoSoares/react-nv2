@@ -10,15 +10,18 @@ function useErros(validacoes) {
         const {name, value} = event.target;
         const novoEstado = {...erros};
         novoEstado[name] = validacoes[name](value);
+        
         setErros(novoEstado);
     }
 
     function possoEnviar() {
         for(let campo in erros) {
             if (!erros[campo].valido) {
+                console.log(campo);
                 return false;
             }
         }
+
         return true;
     }
 
@@ -29,7 +32,8 @@ function criarEstadoInicial(validacoes) {
     const estadoInicial = {};
 
     for(let campo in validacoes) {
-        estadoInicial[campo] = {valid: true, texto: ""};
+        console.log(campo);
+        estadoInicial[campo] = {valido: true, texto: ""};
     }
 
     return estadoInicial;
